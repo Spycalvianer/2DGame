@@ -16,20 +16,24 @@ public class PlayerMechanics : MonoBehaviour
     [HideInInspector] public bool canPerformAction;
     [HideInInspector] public float startMovementSpeed;
 
+    [Header("Jumping/Dashing")]
     //Jumping and Dashing Variables
-    public float jumpForce, movementSpeed, upwardsDashForce, dashAmount;
+    public float jumpForce;
+    public float movementSpeed;
+    public float upwardsDashForce;
+    public float dashAmount;
     bool jumpIsPressed, isGrounded, upwardsDashPressed, dashPressed;
     public float groundcheckRadius;
     public LayerMask groundLayer;
     public float doubleJumpForce;
     int jumpCount, upwardsDashCount;
     public float waitDash;
-
+    [Header("Hiding")]
      //Hiding Variables
     public bool hideInput;
-    bool canMove = true;
+    public  bool canMove = true;
     public bool canHide;
-    float hideableTimer = 0;
+    public float hideableTimer = 0;
 
     [Header("Data")]
     public int dashStaminaCost;
@@ -42,7 +46,6 @@ public class PlayerMechanics : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         data = GetComponent<PlayerData>();
-
     }
     private void Start()
     {
@@ -63,6 +66,9 @@ public class PlayerMechanics : MonoBehaviour
         UpwardsDash();
         ResetCounts();
         ForwardDash();
+    }
+    private void LateUpdate()
+    {
         Hiding();
     }
     void GetInput()
@@ -148,28 +154,32 @@ public class PlayerMechanics : MonoBehaviour
     {
         if (hideInput && canHide && data.playerStamina > 0)
         {
+            gameObject.layer = LayerMask.NameToLayer("Hidden");
             sprite.SetActive(false);
             canMove = false;
-            if (sprite.activeSelf == false)
-            {
-                data.HidingStaminaCost(hidingStaminaCost);
-            }
+            data.HidingStaminaCost(hidingStaminaCost);
         }
-        else if(data.playerStamina <= 0)
+        else if (!hideInput)
         {
+            gameObject.layer = LayerMask.NameToLayer("Player");
+            sprite.SetActive(true);
+            canMove = true;
+        }
+        if(data.playerStamina <= 0)
+        {
+            gameObject.layer = LayerMask.NameToLayer("Player");
+            sprite.SetActive(true);
             canHide = false;
-            
             hideableTimer += Time.deltaTime;
-            if(hideableTimer >= 3)
+            if (hideableTimer >= 3)
             {
                 canHide = true;
             }
         }
-        else 
-        {
-            sprite.SetActive(true);
-            canMove = true;
-        }
+    }
+    IEnumerator TimerToHide()
+    {
+        yield return new WaitForSeconds(hideableTimer);
     }
     void GroundCheck()
     {

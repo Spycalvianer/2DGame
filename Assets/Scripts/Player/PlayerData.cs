@@ -35,7 +35,9 @@ public class PlayerData : MonoBehaviour
     public void HidingStaminaCost(int hidingStaminaCost)
     {
         playerStamina -= hidingStaminaCost * Time.deltaTime;
+        playerStamina = Mathf.Clamp(playerStamina, 0, maxStamina);
     }
+
     void StaminaRegen()
     {
         if(playerStamina < maxStamina) playerStamina += Time.deltaTime * playerStaminaRegenMult;
@@ -53,25 +55,4 @@ public class PlayerData : MonoBehaviour
             mechanics.canPerformAction = true;
         }
     }
-    /*void StaminaLost()
-{
-    if (playerStamina <= 0)
-    {
-        mechanics.movementSpeed = 0;
-        mechanics.canPerformAction = false;
-        StartCoroutine(Timer());
-    }
-    else timer = 0;
-}
-IEnumerator Timer()
-{
-    timer += Time.deltaTime;
-    Debug.Log(timer);
-    if (timer > 3)
-    {
-        mechanics.canPerformAction = true;
-        mechanics.movementSpeed = mechanics.startMovementSpeed;
-        yield return null;
-    }
-}*/
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChatGPTEnemyTest : MonoBehaviour
+public class EnemyPatrol : MonoBehaviour
 {
         [Header("Positions")]
         public Transform pointA;

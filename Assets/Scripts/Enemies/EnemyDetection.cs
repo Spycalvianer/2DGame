@@ -5,11 +5,11 @@ using System;
 
 public class EnemyDetection : MonoBehaviour
 {
-    ChatGPTEnemyTest enemy;
+    EnemyPatrol enemy;
 
     private void Awake()
     {
-        enemy = GetComponentInParent<ChatGPTEnemyTest>();
+        enemy = GetComponentInParent<EnemyPatrol>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

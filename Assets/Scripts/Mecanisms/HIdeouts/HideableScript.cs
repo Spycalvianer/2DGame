@@ -10,6 +10,10 @@ public class HideableScript : MonoBehaviour
     {
         mechanics.canHide = true;
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        mechanics.canHide = true;
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         mechanics.canHide = false;
