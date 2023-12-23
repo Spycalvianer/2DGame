@@ -13,13 +13,15 @@ public class EnemyDetection : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player" && collision.gameObject.activeSelf == true)
+        if(collision.tag == "Player")
         {
+            Debug.Log("playerDetected");
             enemy.pursuingPlayer = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        Debug.Log("PlayerEscaped");
         enemy.pursuingPlayer = false;
     }
 }

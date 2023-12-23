@@ -18,7 +18,6 @@ public class EnemyPatrol : MonoBehaviour
         private bool isResting;
     [HideInInspector] public bool pursuingPlayer;
     public float pursueSpeed;
-    public GameObject playerObject;
 
         private void Start()
         {
@@ -65,10 +64,9 @@ public class EnemyPatrol : MonoBehaviour
                 yield return new WaitForSeconds(1f);
                 currentWaitTime--;
             }
-
-            ChangeTarget();
             isResting = false;
-        }
+        ChangeTarget();
+    }
 
         void ChangeTarget()
         {
@@ -82,12 +80,15 @@ public class EnemyPatrol : MonoBehaviour
             }
         }
     void Flip()
-    {
+    { /*
         if (currentTarget == pointA)
         {
             transform.localScale = new Vector2(-1, transform.localScale.y);
         }
         else transform.localScale = new Vector2(1, transform.localScale.y);
+        */
+        if(transform.position.x - currentTarget.position.x < 0) transform.localScale = new Vector2(1, transform.localScale.y);
+        else if (transform.position.x - currentTarget.position.x > 0) transform.localScale = new Vector2(-1, transform.localScale.y);
     }
     void PursuePlayer()
     {

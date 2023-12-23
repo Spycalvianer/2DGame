@@ -11,6 +11,8 @@ public class PlayerUI : MonoBehaviour
     private void Awake()
     {
         data = GetComponent<PlayerData>();
+        staminaImage = GameObject.Find("StaminaImage").GetComponent<Image>();
+        healthImage = GameObject.Find("HealthImage").GetComponent<Image>();
     }
     void Update()
     {

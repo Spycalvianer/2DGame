@@ -102,8 +102,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1166686683
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
@@ -160,7 +160,8 @@ GameObject:
   m_Component:
   - component: {fileID: 807572636283428759}
   - component: {fileID: 807572636283428756}
-  - component: {fileID: 807572636283428763}
+  - component: {fileID: 4926238145608115424}
+  - component: {fileID: 4335382955566325286}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -211,7 +212,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &807572636283428763
+--- !u!114 &4926238145608115424
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,7 +221,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 807572636283428758}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0546b8dee4d64284e84fb2fff9ebf06f, type: 3}
+  m_Script: {fileID: 11500000, guid: 66c04df44b65b2f49afe208f3aa9a388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointA: {fileID: 807572635768738489}
@@ -229,7 +230,19 @@ MonoBehaviour:
   movingSpeed: 2
   maxWaitTime: 2
   pursuingPlayer: 0
-  pursueSpeed: 5
+  pursueSpeed: 3
+--- !u!114 &4335382955566325286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807572636283428758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f07c5213b27574ebfbe59b14607ef0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &807572636700806690
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +289,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 3, y: 0}
+  m_Offset: {x: 2, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -371,8 +384,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1166686683
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

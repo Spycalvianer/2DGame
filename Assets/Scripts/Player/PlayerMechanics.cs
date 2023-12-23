@@ -12,24 +12,29 @@ public class PlayerMechanics : MonoBehaviour
 
     [Header("Variables")]
     [HideInInspector] public float xAxis;
-    [HideInInspector] public bool doubleJumpActivated, upwardsDashActivated, dashActivated;
+    public bool doubleJumpActivated, upwardsDashActivated, dashActivated;
     [HideInInspector] public bool canPerformAction;
     [HideInInspector] public float startMovementSpeed;
-
-    [Header("Jumping/Dashing")]
-    //Jumping and Dashing Variables
-    public float jumpForce;
     public float movementSpeed;
-    public float upwardsDashForce;
-    public float dashAmount;
-    bool jumpIsPressed, isGrounded, upwardsDashPressed, dashPressed;
+
+    [Header("Jumping")]
+    public float jumpForce;   
+    bool jumpIsPressed, isGrounded;
     public float groundcheckRadius;
     public LayerMask groundLayer;
     public float doubleJumpForce;
-    int jumpCount, upwardsDashCount;
-    public float waitDash;
+    int jumpCount;
+
+    [Header("Forward Dash")]
+    public float dashAmount;
+    bool dashPressed;
+    public float dashDuration;
+
+    [Header("Upwards Dash")]
+    public float upwardsDashForce;
+    bool upwardsDashPressed;
+    int upwardsDashCount;
     [Header("Hiding")]
-     //Hiding Variables
     public bool hideInput;
     public  bool canMove = true;
     public bool canHide;
@@ -49,8 +54,6 @@ public class PlayerMechanics : MonoBehaviour
     }
     private void Start()
     {
-        upwardsDashActivated = false;
-        doubleJumpActivated = false;
         startMovementSpeed = movementSpeed;
         canPerformAction = true;
     }
@@ -131,8 +134,9 @@ public class PlayerMechanics : MonoBehaviour
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0;
         rb.velocity = new Vector2(transform.localScale.x * dashAmount, 0);
-        yield return new WaitForSeconds(waitDash);
+        yield return new WaitForSeconds(dashDuration);
         rb.gravityScale = originalGravity;
+        rb.velocity = new Vector2(0, 0);
     }
     void ForwardDash()
     {

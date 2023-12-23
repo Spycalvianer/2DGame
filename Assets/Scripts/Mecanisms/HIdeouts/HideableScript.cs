@@ -6,6 +6,10 @@ using System;
 public class HideableScript : MonoBehaviour
 {
     public PlayerMechanics mechanics;
+    private void Awake()
+    {
+        mechanics = FindObjectOfType<PlayerMechanics>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         mechanics.canHide = true;
